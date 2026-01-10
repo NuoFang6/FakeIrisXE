@@ -4417,14 +4417,31 @@ bool FakeIrisXEFramebuffer::initGuCSystem()
     // 3. Load firmware from EMBEDDED arrays (not from resources)
     // Use your embedded arrays directly
     
+    // Determine which firmware to use based on Device ID
+    const unsigned char* guc_bin = nullptr;
+    unsigned int guc_len = 0;
+    UInt16 deviceID = pciDevice->configRead16(kIOPCIConfigDeviceID);
+
+    if (deviceID == 0x46A3) {
+        // Alder Lake P
+        guc_bin = adlp_guc_70_1_1_bin;
+        guc_len = adlp_guc_70_1_1_bin_len;
+        IOLog("(FakeIrisXE) Selected ADL-P GuC firmware\n");
+    } else {
+        // Default to Tiger Lake
+        guc_bin = tgl_guc_70_1_1_bin;
+        guc_len = tgl_guc_70_1_1_bin_len;
+        IOLog("(FakeIrisXE) Selected TGL GuC firmware\n");
+    }
+
     // Check if GuC firmware is embedded
-    if (!tgl_guc_70_1_1_bin || tgl_guc_70_1_1_bin_len == 0) {
+    if (!guc_bin || guc_len == 0) {
         IOLog("(FakeIrisXE) ❌ Embedded GuC firmware not available\n");
         return false;
     }
     
     // Load GuC firmware from embedded array
-    if (!fGuC->loadGuCFirmware(tgl_guc_70_1_1_bin, tgl_guc_70_1_1_bin_len)) {
+    if (!fGuC->loadGuCFirmware(guc_bin, guc_len)) {
         IOLog("(FakeIrisXE) Failed to load GuC firmware\n");
         return false;
     }

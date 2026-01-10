@@ -21,6 +21,11 @@ extern const unsigned char tgl_huc_7_9_3_bin[];
 extern const unsigned int tgl_huc_7_9_3_bin_len;
 
 
+// GuC Firmware for Alder Lake P
+extern const unsigned char adlp_guc_70_1_1_bin[];
+extern const unsigned int adlp_guc_70_1_1_bin_len;
+
+
 // DMC Firmware for Tiger Lake
 extern const unsigned char tgl_dmc_ver2_12_bin[];
 extern const unsigned int tgl_dmc_ver2_12_bin_len;
