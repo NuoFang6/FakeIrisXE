@@ -51,7 +51,7 @@ FakeIrisXEGuC* FakeIrisXEGuC::withOwner(FakeIrisXEFramebuffer* owner)
 
 bool FakeIrisXEGuC::initGuC()
 {
-    IOLog("(FakeIrisXE) [GuC] Initializing Tiger Lake GuC\n");
+    IOLog("(FakeIrisXE) [GuC] Initializing Gen12 GuC (TGL/ADL)\n");
     
     // 1. Dump GuC capabilities
     uint32_t caps1 = fOwner->safeMMIORead(GEN11_GUC_CAPS1);

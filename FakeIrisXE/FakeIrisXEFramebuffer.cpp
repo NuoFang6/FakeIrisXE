@@ -141,8 +141,8 @@ IOService *FakeIrisXEFramebuffer::probe(IOService *provider, SInt32 *score) {
     UInt16 device = pdev->configRead16(kIOPCIConfigDeviceID);
 
     // Only proceed if it's your target device
-    if (vendor == 0x8086 && device == 0x9A49) {
-        IOLog("FakeIrisXEFramebuffer::probe(): Found matching GPU (8086:9A49)\n");
+    if (vendor == 0x8086 && (device == 0x9A49 || device == 0x46A3)) {
+        IOLog("FakeIrisXEFramebuffer::probe(): Found matching GPU (8086:%04X)\n", device);
         
         
         if (score) *score = 99999999; // MAX override score
