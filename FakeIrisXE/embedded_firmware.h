@@ -30,6 +30,11 @@ extern const unsigned int adlp_guc_70_1_1_bin_len;
 extern const unsigned char tgl_dmc_ver2_12_bin[];
 extern const unsigned int tgl_dmc_ver2_12_bin_len;
 
+
+// DMC Firmware for Alder Lake P
+extern const unsigned char adlp_dmc_ver2_16_bin[];
+extern const unsigned int adlp_dmc_ver2_16_bin_len;
+
 #ifdef __cplusplus
 }
 #endif
